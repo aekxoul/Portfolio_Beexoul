@@ -1,161 +1,166 @@
 "use strict";
-const header = document.querySelector("[data-header]");
-const goTopBtn = document.querySelector("[data-go-top]");
-const navToggleBtn = document.querySelector("[data-nav-toggle-btn]");
-const navbar = document.querySelector("[data-navbar]");
-const themeToggleBtn = document.querySelector("[data-theme-btn]");
-let lastScrollY = window.scrollY;
-let isScrollingDown = false;
-const toggleClass = (el, cls) => el.classList.toggle(cls);
-const setTheme = (theme) => {
-    document.body.classList.remove("dark_theme", "light_theme");
-    document.body.classList.add(theme);
-    localStorage.setItem("theme", theme);
-};
-window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        if (!isScrollingDown) {
-            header.classList.add("hidden");
-            isScrollingDown = true;
-        }
-    } else if (currentScrollY < lastScrollY) {
-        if (isScrollingDown) {
-            header.classList.remove("hidden");
-            isScrollingDown = false;
-        }
-    }
-    if (currentScrollY >= 10) {
-        header.classList.add("active");
-        goTopBtn.classList.add("active");
-    } else {
-        header.classList.remove("active", "hidden");
-        goTopBtn.classList.remove("active");
-        isScrollingDown = false;
-    }
-    lastScrollY = currentScrollY;
-});
-navToggleBtn.addEventListener("click", () => {
-    toggleClass(navToggleBtn, "active");
-    toggleClass(navbar, "active");
-    toggleClass(document.body, "active");
-});
-themeToggleBtn.addEventListener("click", () => {
-    toggleClass(themeToggleBtn, "active");
-    if (themeToggleBtn.classList.contains("active")) {
-        setTheme("light_theme");
-    } else {
-        setTheme("dark_theme");
-    }
-});
-const userTheme = localStorage.getItem("theme");
-if (userTheme === "light_theme") {
-    toggleClass(themeToggleBtn, "active");
-    setTheme("light_theme");
-} else {
-    setTheme("dark_theme");
-}
+
+/**
+ * Single blog post script:
+ * - Load post from network or offline cache
+ * - Render markdown/block contents securely
+ * - Copy code snippets to clipboard
+ */
+
 const POSTS_URL = "./posts.json";
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("id");
+
 const loadingEl = document.getElementById("post-loading");
 const errorEl = document.getElementById("post-error");
 const wrapperEl = document.getElementById("post-wrapper");
+
 async function loadPost() {
     if (!postId) {
         showError();
         return;
     }
+
+    // 1. Instant check from localStorage cache if available
+    const cachedPosts = window.AppCore ? window.AppCore.getPostsFromStorage() : null;
+    if (cachedPosts && Array.isArray(cachedPosts)) {
+        const post = cachedPosts.find((p) => p.id === postId);
+        if (post) {
+            const others = cachedPosts.filter((p) => p.id !== postId).slice(0, 3);
+            renderPost(post, others);
+        }
+    }
+
+    // 2. Fetch fresh post data
     try {
         const res = await fetch(POSTS_URL);
-        if (!res.ok) {
-            throw new Error("Failed to fetch posts");
-        }
+        if (!res.ok) throw new Error("Failed to fetch posts");
         const posts = await res.json();
+        if (window.AppCore) {
+            window.AppCore.savePostsToStorage(posts);
+        }
+
         const post = posts.find((p) => p.id === postId);
         if (!post) {
-            throw new Error("Post not found");
+            if (wrapperEl && wrapperEl.classList.contains("hidden")) {
+                showError();
+            }
+            return;
         }
+
         const others = posts.filter((p) => p.id !== postId).slice(0, 3);
         renderPost(post, others);
     } catch (err) {
-        console.error("Could not load post:", err);
-        showError();
+        console.warn("Could not fetch fresh post, checking offline view:", err);
+        if (wrapperEl && wrapperEl.classList.contains("hidden")) {
+            showError();
+        }
     }
 }
+
 function showError() {
-    loadingEl.style.display = "none";
-    errorEl.classList.add("visible");
+    if (loadingEl) loadingEl.style.display = "none";
+    if (errorEl) errorEl.classList.add("visible");
 }
+
 function renderPost(post, others) {
-    document.title = `${post.title} | Beexoul Blog`;
-    document.getElementById("post-category").textContent = post.category || "";
-    document.getElementById("post-date").textContent = post.date || "";
-    document.getElementById("post-read-time").textContent = post.readTime || "";
-    document.getElementById("post-title").textContent = post.title || "";
-    document.getElementById("post-subtitle").textContent = post.subtitle || "";
-    const author = post.author || "Beexoul";
-    document.getElementById("author-name").textContent = author;
-    document.getElementById("author-avatar-letter").textContent = author.charAt(0).toUpperCase();
-    const cover = document.getElementById("post-cover-img");
-    cover.src = post.thumbnail || "";
-    cover.alt = post.title || "Blog post cover";
-    const body = document.getElementById("post-body");
-    const contentBlocks = Array.isArray(post.content) ? post.content : [];
-    body.innerHTML = contentBlocks.map((block) => renderBlock(block)).join("");
-    const tagsList = document.getElementById("post-tags-list");
-    const tags = Array.isArray(post.tags) ? post.tags : [];
-    tagsList.innerHTML = tags.map((tag) => `<li class="tag">${escapeHtml(tag)}</li>`).join("");
-    if (others.length) {
-        const grid = document.getElementById("more-posts-grid");
-        grid.innerHTML = others
-            .map(
-                (p) => `
-<a href="post.html?id=${encodeURIComponent(p.id)}" class="more-post-card">
-<div class="thumb">
-<img src="${escapeAttribute(p.thumbnail)}" alt="${escapeAttribute(p.title)}" loading="lazy">
-</div>
-<div class="info">
-<p class="cat">${escapeHtml(p.category || "")}</p>
-<p class="title">${escapeHtml(p.title || "")}</p>
-</div>
-</a>
-`
-            )
-            .join("");
-    } else {
-        document.querySelector(".more-posts").style.display = "none";
+    const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => s;
+    const sanitize = window.AppCore ? window.AppCore.sanitizeUrl : (u) => u;
+
+    document.title = `${post.title || "Post"} | Beexoul Blog`;
+
+    const categoryEl = document.getElementById("post-category");
+    const dateEl = document.getElementById("post-date");
+    const readTimeEl = document.getElementById("post-read-time");
+    const titleEl = document.getElementById("post-title");
+    const subtitleEl = document.getElementById("post-subtitle");
+    const authorNameEl = document.getElementById("author-name");
+    const authorAvatarEl = document.getElementById("author-avatar-letter");
+    const coverEl = document.getElementById("post-cover-img");
+
+    if (categoryEl) categoryEl.textContent = post.category || "";
+    if (dateEl) dateEl.textContent = post.date || "";
+    if (readTimeEl) readTimeEl.textContent = post.readTime || "";
+    if (titleEl) titleEl.textContent = post.title || "";
+    if (subtitleEl) subtitleEl.textContent = post.subtitle || "";
+
+    const author = post.author || "Shiva Raj Paudel";
+    if (authorNameEl) authorNameEl.textContent = author;
+    if (authorAvatarEl) authorAvatarEl.textContent = author.charAt(0).toUpperCase();
+
+    if (coverEl) {
+        coverEl.src = sanitize(post.thumbnail);
+        coverEl.alt = escape(post.title || "Blog post cover");
     }
-    loadingEl.style.display = "none";
-    wrapperEl.classList.remove("hidden");
+
+    const bodyEl = document.getElementById("post-body");
+    if (bodyEl) {
+        const contentBlocks = Array.isArray(post.content) ? post.content : [];
+        bodyEl.innerHTML = contentBlocks.map((block) => renderBlock(block)).join("");
+    }
+
+    const tagsListEl = document.getElementById("post-tags-list");
+    if (tagsListEl) {
+        const tags = Array.isArray(post.tags) ? post.tags : [];
+        tagsListEl.innerHTML = tags.map((tag) => `<li class="tag">${escape(tag)}</li>`).join("");
+    }
+
+    if (others && others.length) {
+        const grid = document.getElementById("more-posts-grid");
+        if (grid) {
+            grid.innerHTML = others
+                .map(
+                    (p) => `
+                <a href="post.html?id=${encodeURIComponent(p.id)}" class="more-post-card">
+                    <div class="thumb">
+                        <img src="${sanitize(p.thumbnail)}" alt="${escape(p.title)}" loading="lazy">
+                    </div>
+                    <div class="info">
+                        <p class="cat">${escape(p.category || "")}</p>
+                        <p class="title">${escape(p.title || "")}</p>
+                    </div>
+                </a>
+            `
+                )
+                .join("");
+        }
+    } else {
+        const morePostsSection = document.querySelector(".more-posts");
+        if (morePostsSection) morePostsSection.style.display = "none";
+    }
+
+    if (loadingEl) loadingEl.style.display = "none";
+    if (wrapperEl) wrapperEl.classList.remove("hidden");
     attachCopyHandlers();
 }
+
 function renderBlock(block) {
-    if (!block || typeof block !== "object") {
-        return "";
-    }
+    if (!block || typeof block !== "object") return "";
+    const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => s;
+
     switch (block.type) {
         case "paragraph":
-            return `<p>${escapeHtml(block.text || "")}</p>`;
+            return `<p>${escape(block.text || "")}</p>`;
         case "heading":
-            return `<h2>${escapeHtml(block.text || "")}</h2>`;
+            return `<h2>${escape(block.text || "")}</h2>`;
         case "code":
             return `
-<div class="code-block">
-<div class="code-header">
-<span class="code-lang">${escapeHtml(block.language || "code")}</span>
-<button class="copy-btn" data-code="${encodeURIComponent(block.text || "")}">Copy</button>
-</div>
-<pre><code>${escapeHtml(block.text || "")}</code></pre>
-</div>
-`;
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang">${escape(block.language || "code")}</span>
+                        <button class="copy-btn" data-code="${encodeURIComponent(block.text || "")}">Copy</button>
+                    </div>
+                    <pre><code>${escape(block.text || "")}</code></pre>
+                </div>
+            `;
         default:
             return "";
     }
 }
+
 function attachCopyHandlers() {
     document.querySelectorAll(".copy-btn").forEach((btn) => {
-        btn.addEventListener("click", async () => {
+        btn.onclick = async () => {
             const code = decodeURIComponent(btn.dataset.code || "");
             try {
                 await navigator.clipboard.writeText(code);
@@ -171,17 +176,8 @@ function attachCopyHandlers() {
                     btn.textContent = "Copy";
                 }, 2000);
             }
-        });
+        };
     });
 }
-function escapeHtml(value) {
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-}
-function escapeAttribute(value) {
-    return escapeHtml(value).replace(/'/g, "&#39;");
-}
+
 loadPost();

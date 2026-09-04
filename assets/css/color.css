@@ -1,6 +1,6 @@
 :root {
     --raw-seinna: hsl(24, 74%, 58%);
-    --raw-seinna-light: hsl(0, 0%, 100%);
+    --raw-seinna-light: hsl(24, 74%, 68%);
     --sizzling-sunrise: hsl(51, 95%, 54%);
     --scarlet: hsl(13, 96%, 47%);
     --black: hsl(0, 0%, 0%);
@@ -20,7 +20,7 @@
     --transition-1: 0.25s ease-in-out;
     --section-padding: 80px;
     --radius-4: 4px;
-    --radius-12: 12px
+    --radius-12: 12px;
 }
 
 body.dark_theme {
@@ -30,15 +30,21 @@ body.dark_theme {
     --color-primary: hsl(0, 0%, 95%);
     --color-secondary: hsl(0, 0%, 70%);
     --color-muted: hsl(0, 0%, 50%);
-    --border-color: hsl(220, 13%, 35%)
+    --border-color: hsl(220, 13%, 35%);
+    --card-shadow: hsla(0, 0%, 0%, 0.4);
+    --header-bg: hsla(220, 13%, 18%, 0.85);
+    --raw-seinna-light: hsl(24, 74%, 68%);
 }
 
 body.light_theme {
     --bg-primary: hsl(0, 0%, 98%);
     --bg-secondary: hsl(0, 0%, 100%);
     --bg-card: hsl(0, 0%, 100%);
-    --color-primary: hsl(0, 0%, 10%);
-    --color-secondary: hsl(0, 0%, 40%);
-    --color-muted: hsl(0, 0%, 60%);
-    --border-color: hsl(0, 0%, 90%)
+    --color-primary: hsl(220, 18%, 13%);
+    --color-secondary: hsl(220, 10%, 42%);
+    --color-muted: hsl(220, 10%, 60%);
+    --border-color: hsl(220, 14%, 88%);
+    --card-shadow: hsla(0, 0%, 0%, 0.08);
+    --header-bg: hsla(0, 0%, 100%, 0.9);
+    --raw-seinna-light: hsl(24, 74%, 48%);
 }

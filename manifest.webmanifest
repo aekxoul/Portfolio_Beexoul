@@ -1,0 +1,32 @@
+{
+  "id": "/",
+  "name": "Beexoul Portfolio",
+  "short_name": "Beexoul",
+  "description": "Portfolio of Shiva Raj Paudel (Beexoul) featuring skills, projects, and personal blog",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#242833",
+  "theme_color": "#242833",
+  "icons": [
+    {
+      "src": "./assets/images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./assets/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

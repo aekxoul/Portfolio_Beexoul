@@ -5,7 +5,12 @@
     <meta charset=UTF-8>
     <meta http-equiv=X-UA-Compatible content="IE=edge">
     <meta name=viewport content="width=device-width,initial-scale=1">
-    <title>Beexoul</title>
+    <title>Beexoul Portfolio</title>
+    <meta name="description" content="Portfolio of Shiva Raj Paudel (Beexoul) featuring skills, projects, and personal blog">
+    <meta property="og:title" content="Beexoul Portfolio">
+    <meta property="og:description" content="Portfolio of Shiva Raj Paudel (Beexoul) featuring skills, projects, and personal blog">
+    <meta name="theme-color" content="#242833">
+    <link rel="manifest" href="./manifest.webmanifest">
     <link rel="icon" href="./assets/images/favicon.png" type="image/png">
     <link rel=stylesheet href=./assets/css/style.css>
     <link rel="stylesheet" href="./assets/css/color.css">
@@ -32,6 +37,9 @@
                     <li><a href=#home class=navbar-link>Home</a></li>
                     <li><a href=#about class=navbar-link>About</a></li>
                     <li><a href=#skills class=navbar-link>Skills</a></li>
+                    <li><a href=#experience class=navbar-link>Experience</a></li>
+                    <li><a href=#education class=navbar-link>Education</a></li>
+                    <li><a href=#projects class=navbar-link>Projects</a></li>
                     <li><a href="./blog/blog.html" class="navbar-link">Blog</a></li>
                 </ul>
             </nav>
@@ -53,30 +61,36 @@
                     <p class="h4 hero-title">Versatile, Integrated and
                         Problem solver.</p>
                 </div>
-                <ul class=hero-social-list>
-                    <li><a href=https://www.youtube.com/@itsbeexoul class=hero-social-link><ion-icon
-                                name=logo-youtube></ion-icon>
-                            <div class=tooltip>YouTube</div>
+                <ul class="hero-social-list">
+                    <li><a href="https://www.youtube.com/@itsbeexoul" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="YouTube"><ion-icon
+                                name="logo-youtube"></ion-icon>
+                            <div class="tooltip">YouTube</div>
                         </a></li>
-                    <li><a href=https://www.linkedin.com/in/notbeexoul class=hero-social-link><ion-icon
-                                name=logo-linkedin></ion-icon>
-                            <div class=tooltip>LinkedIn</div>
+                    <li><a href="https://www.linkedin.com/in/notbeexoul" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="LinkedIn"><ion-icon
+                                name="logo-linkedin"></ion-icon>
+                            <div class="tooltip">LinkedIn</div>
                         </a></li>
-                    <li><a href=https://www.instagram.com/notbeexoul/ class=hero-social-link><ion-icon
-                                name=logo-instagram></ion-icon>
-                            <div class=tooltip>Instagram</div>
+                    <li><a href="https://www.instagram.com/notbeexoul/" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="Instagram"><ion-icon
+                                name="logo-instagram"></ion-icon>
+                            <div class="tooltip">Instagram</div>
                         </a></li>
-                    <li><a href=https://github.com/Beexoul class=hero-social-link><ion-icon name=logo-github></ion-icon>
-                            <div class=tooltip>GitHub</div>
+                    <li><a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="GitHub"><ion-icon name="logo-github"></ion-icon>
+                            <div class="tooltip">GitHub</div>
                         </a></li>
-                    <li><a href=https://twitter.com/shivarajpaudel_ class=hero-social-link><ion-icon
-                                name=logo-twitter></ion-icon>
-                            <div class=tooltip>Twitter</div>
+                    <li><a href="https://twitter.com/shivarajpaudel_" target="_blank" rel="noopener noreferrer" class="hero-social-link" aria-label="Twitter"><ion-icon
+                                name="logo-twitter"></ion-icon>
+                            <div class="tooltip">Twitter</div>
                         </a></li>
-                    <li><a href=mailto:student.shivarajpaudel@gmail.com class=hero-social-link><ion-icon
-                                name=mail-outline></ion-icon>
-                            <div class=tooltip>Gmail</div>
-                        </a></li>
+                    <li class="hero-email-item">
+                        <a href="mailto:notbeexoul@gmail.com" class="hero-social-link hero-email-link" aria-label="Send email via Gmail">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <div class="tooltip">Gmail</div>
+                        </a>
+                        <button type="button" class="hero-social-link copy-email-btn" id="copy-email-btn" data-email="notbeexoul@gmail.com" aria-label="Copy email address to clipboard" title="Copy email to clipboard">
+                            <ion-icon name="copy-outline" id="copy-email-icon"></ion-icon>
+                            <div class="tooltip" id="copy-email-tooltip">Copy Email</div>
+                        </button>
+                    </li>
                 </ul><a href=#about class=scroll-down>Scroll</a>
             </section>
             <section class=about id=about>
@@ -99,6 +113,7 @@
                         communication, source control, and proficient
                         project management. Let's build something amazing
                         together! </p>
+                </div>
             </section>
             <section class=skills id=skills>
                 <div class="skills-content section-content">
@@ -219,14 +234,580 @@
                         </li>
                     </ul>
                 </div>
-            </section><a href=#top class=go-top data-go-top title="Go to Top"><ion-icon name=arrow-up></ion-icon></a>
-            <script src=./assets/js/script.js></script>
-            <script rel="preload" type=module crossorigin="anonymous" as="script"
-                src=https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js></script>
-            <script rel="preload" type=module crossorigin="anonymous" as="script" nomodule
-                src=https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js></script>
+            </section>
+
+            <section class="resume" id="experience" data-resume-section>
+                <span id="education" class="resume-anchor" aria-hidden="true"></span>
+                <span id="projects" class="resume-anchor" aria-hidden="true"></span>
+
+                <div class="resume-content section-content">
+                    <p class="section-subtitle">Portfolio</p>
+                    <h2 class="h3 section-title">Experience, Education & Projects</h2>
+                    <p class="section-text">
+                        A comprehensive showcase of my professional leadership roles, academic foundation in Computer Engineering, and featured software development projects.
+                    </p>
+
+                    <div class="resume-tabs-wrapper">
+                        <div class="resume-tabs" role="tablist" aria-label="Resume categories" data-resume-tabs>
+                            <button type="button" class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-experience" id="tab-btn-experience" data-tab-target="panel-experience">
+                                <ion-icon name="briefcase-outline"></ion-icon>
+                                <span>Experience</span>
+                            </button>
+                            <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-education" id="tab-btn-education" data-tab-target="panel-education">
+                                <ion-icon name="school-outline"></ion-icon>
+                                <span>Education</span>
+                            </button>
+                            <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-projects" id="tab-btn-projects" data-tab-target="panel-projects">
+                                <ion-icon name="code-slash-outline"></ion-icon>
+                                <span>Projects</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-panels">
+                    <!-- ==================== EXPERIENCE TAB ==================== -->
+                    <div class="resume-panel active" id="panel-experience" role="tabpanel" aria-labelledby="tab-btn-experience">
+                        <div class="timeline-grid">
+                            <div class="resume-card" id="exp-aws">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">AWS Cloud</span>
+                                        <h3 class="role-title">AWS Student Builder Group Leader</h3>
+                                        <h4 class="company-name">Amazon Web Services (AWS)</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 02/2026 – Present</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Kathmandu</span>
+                                    </div>
+                                </div>
+                                <ul class="resume-bullet-list">
+                                    <li>Guided student activities in connection with learning about AWS and engaging with the community.</li>
+                                    <li>Organized events, discussions, and technical sessions to enable members learn about cloud computing.</li>
+                                    <li>Encouraged cooperation between students who were interested in AWS.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-card" id="exp-socise">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Student Leadership</span>
+                                        <h3 class="role-title">General Secretary</h3>
+                                        <h4 class="company-name">SOCISE-EEC</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 07/2025 – Present</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Kathmandu</span>
+                                    </div>
+                                </div>
+                                <ul class="resume-bullet-list">
+                                    <li>Responsible for communication, event coordination, and organization of the student club.</li>
+                                    <li>Collaborated with teammates on planning and carrying out technical and academic events.</li>
+                                    <li>Assisted in ensuring that operations ran smoothly and members were engaged.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-card" id="exp-neffeo">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Technical & Media</span>
+                                        <h3 class="role-title">Social Media & Technical Manager</h3>
+                                        <h4 class="company-name">Neffeeo Academy</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 11/2024 – Present</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Butwal</span>
+                                    </div>
+                                </div>
+                                <ul class="resume-bullet-list">
+                                    <li>Management of social media content and technical support in academy events.</li>
+                                    <li>Creation of digital content for communication and marketing purposes related to work.</li>
+                                    <li>Assisted in enhancing the online presence through social media.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-card" id="exp-hult">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Entrepreneurship</span>
+                                        <h3 class="role-title">Startup Coordinator</h3>
+                                        <h4 class="company-name">Hult Prize at Everest Engineering College</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 11/2025 – 02/2026</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Kathmandu</span>
+                                    </div>
+                                </div>
+                                <ul class="resume-bullet-list">
+                                    <li>Coordinated startup-related activities and supported student participation in entrepreneurial events.</li>
+                                    <li>Assisted in organizing sessions, teams, and competition-related tasks.</li>
+                                    <li>Encouraged innovation and collaboration among participants.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-card" id="exp-codeforchange">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Tech Community</span>
+                                        <h3 class="role-title">College Representative</h3>
+                                        <h4 class="company-name">Code for Change</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 02/2025 – 01/2026</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Kathmandu</span>
+                                    </div>
+                                </div>
+                                <ul class="resume-bullet-list">
+                                    <li>Represented the college in a tech/community-driven organization.</li>
+                                    <li>Communicated with members and supported event or initiative coordination.</li>
+                                    <li>Helped connect students with opportunities in coding and collaboration.</li>
+                                </ul>
+                            </div>
+
+                            <div class="resume-card" id="exp-abhinav">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">IT Operations</span>
+                                        <h3 class="role-title">Assistant Technical Manager</h3>
+                                        <h4 class="company-name">Abhinav Advisory Services</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 05/2023 – 10/2023</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Kathmandu</span>
+                                    </div>
+                                </div>
+                                <ul class="resume-bullet-list">
+                                    <li>Supported technical operations and administrative tasks.</li>
+                                    <li>Assisted with system-related work and day-to-day technical responsibilities.</li>
+                                    <li>Contributed to maintaining organized and efficient workflow.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== EDUCATION TAB ==================== -->
+                    <div class="resume-panel" id="panel-education" role="tabpanel" aria-labelledby="tab-btn-education">
+                        <div class="education-grid">
+                            <div class="resume-card edu-card" id="edu-be">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Bachelor's Degree</span>
+                                        <h3 class="role-title">Bachelor of Engineering, Computer Engineering</h3>
+                                        <h4 class="company-name">Everest Engineering College, PoU</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 08/2024 – 2028 (Expected)</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Kathmandu, Nepal</span>
+                                    </div>
+                                </div>
+                                <p class="card-desc">
+                                    Pursuing a comprehensive curriculum in Computer Engineering encompassing Data Structures & Algorithms, Computer Systems, Software Engineering, and Database Architecture.
+                                </p>
+                                <div class="focus-areas">
+                                    <span class="focus-tag">Data Structures & Algorithms</span>
+                                    <span class="focus-tag">System Design</span>
+                                    <span class="focus-tag">Software Development</span>
+                                    <span class="focus-tag">Database Systems</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-card edu-card" id="edu-slc">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Secondary Education</span>
+                                        <h3 class="role-title">School Leaving Certificate, Computer Engineering</h3>
+                                        <h4 class="company-name">Kalika Manavgyan Secondary School</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="calendar-outline"></ion-icon> 04/2019 – 04/2022</span>
+                                        <span class="location-pill"><ion-icon name="location-outline"></ion-icon> Butwal, Nepal</span>
+                                    </div>
+                                </div>
+                                <p class="card-desc">
+                                    Completed specialized technical stream education covering programming logic, computer systems, applied mathematics, and foundational computer engineering principles.
+                                </p>
+                                <div class="focus-areas">
+                                    <span class="focus-tag">Computer Engineering Fundamentals</span>
+                                    <span class="focus-tag">Programming Logic</span>
+                                    <span class="focus-tag">Mathematics</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-card cert-card" id="edu-cert">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Accredited Course</span>
+                                        <h3 class="role-title">AWS Cloud Foundations</h3>
+                                        <h4 class="company-name">Amazon Web Services Training and Certification</h4>
+                                    </div>
+                                    <div class="meta-group">
+                                        <span class="period-pill"><ion-icon name="ribbon-outline"></ion-icon> Cloud Credential</span>
+                                    </div>
+                                </div>
+                                <p class="card-desc">
+                                    In-depth training covering fundamental AWS cloud computing concepts, core infrastructure services (compute, storage, databases), security best practices, and architecture principles.
+                                </p>
+                                <div class="focus-areas">
+                                    <span class="focus-tag">AWS Cloud</span>
+                                    <span class="focus-tag">Cloud Security</span>
+                                    <span class="focus-tag">Infrastructure</span>
+                                </div>
+                            </div>
+
+                            <div class="resume-card skills-matrix-card" id="edu-matrix">
+                                <div class="resume-card-header">
+                                    <div class="role-group">
+                                        <span class="company-badge">Top Skills Matrix</span>
+                                        <h3 class="role-title">Core Competencies & Verified Proficiency</h3>
+                                        <h4 class="company-name">Evaluated from hands-on software projects and leadership activities</h4>
+                                    </div>
+                                </div>
+                                <div class="matrix-grid">
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">Leadership & Communication</span>
+                                            <span class="matrix-badge expert">Expert</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 95%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">SQL & Databases</span>
+                                            <span class="matrix-badge proficient">Proficient</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 85%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">Cybersecurity</span>
+                                            <span class="matrix-badge proficient">Proficient</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 82%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">Git & GitHub</span>
+                                            <span class="matrix-badge proficient">Proficient</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 88%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">Python</span>
+                                            <span class="matrix-badge competent">Competent</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 75%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">Data Structures & Algorithms</span>
+                                            <span class="matrix-badge competent">Competent</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 72%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">AWS & Cloud Computing</span>
+                                            <span class="matrix-badge competent">Competent</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 70%;"></div></div>
+                                    </div>
+                                    <div class="matrix-item">
+                                        <div class="matrix-header">
+                                            <span class="matrix-name">Java</span>
+                                            <span class="matrix-badge amateur">Amateur</span>
+                                        </div>
+                                        <div class="matrix-bar"><div class="matrix-fill" style="width: 55%;"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== PROJECTS TAB ==================== -->
+                    <div class="resume-panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-btn-projects">
+                        <div class="projects-grid">
+                            <div class="project-card" id="proj-restaurant">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">Terminal Based</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2025</span>
+                                </div>
+                                <h3 class="project-title">Delicious Restaurant Management System</h3>
+                                <p class="project-desc">
+                                    A terminal-based restaurant management system for handling basic restaurant operations such as menu display, ordering, and record management.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">Python</span>
+                                    <span class="tag-pill">CLI / Terminal</span>
+                                    <span class="tag-pill">File I/O</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Delicious Restaurant Management System on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-hangar9">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">Website Clone</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2025</span>
+                                </div>
+                                <h3 class="project-title">Hangar9cafe</h3>
+                                <p class="project-desc">
+                                    A restaurant website clone built to replicate the layout and user experience of the original Hangar9cafe site. Focused on responsive design and front-end structure.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">HTML5</span>
+                                    <span class="tag-pill">CSS3</span>
+                                    <span class="tag-pill">JavaScript</span>
+                                    <span class="tag-pill">Responsive</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Hangar9cafe on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-weather">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">React Web App</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2024</span>
+                                </div>
+                                <h3 class="project-title">Weather_App</h3>
+                                <p class="project-desc">
+                                    A React-based weather application that displays real-time weather information and meteorological metrics using an external REST API.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">React</span>
+                                    <span class="tag-pill">REST API</span>
+                                    <span class="tag-pill">JavaScript</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Weather_App on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-news">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">API React App</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2024</span>
+                                </div>
+                                <h3 class="project-title">News</h3>
+                                <p class="project-desc">
+                                    A React application that fetches and displays live news articles from an external API with a clean user interface and intuitive layout.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">React</span>
+                                    <span class="tag-pill">News API</span>
+                                    <span class="tag-pill">Asynchronous JS</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View News on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-tts">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">Python Audio</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2023</span>
+                                </div>
+                                <h3 class="project-title">TexttoSpeech</h3>
+                                <p class="project-desc">
+                                    A Python-based text-to-speech application that converts written text into spoken output, supporting configurable voice output parameters.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">Python</span>
+                                    <span class="tag-pill">TTS Engine</span>
+                                    <span class="tag-pill">Audio</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View TexttoSpeech on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-cvgen">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">Python Tool</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2023</span>
+                                </div>
+                                <h3 class="project-title">CV_Generator</h3>
+                                <p class="project-desc">
+                                    A Python application that helps users generate CVs more efficiently through a structured input and output formatting process.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">Python</span>
+                                    <span class="tag-pill">Automation</span>
+                                    <span class="tag-pill">Document Gen</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View CV_Generator on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-surviveit">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">C# College Project</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2023</span>
+                                </div>
+                                <h3 class="project-title">Survive_it</h3>
+                                <p class="project-desc">
+                                    A C# college project developed to demonstrate application logic, user interaction mechanics, and object-oriented programming fundamentals.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">C#</span>
+                                    <span class="tag-pill">OOP</span>
+                                    <span class="tag-pill">Application Logic</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Survive_it on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-rps">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">Python Game</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2023</span>
+                                </div>
+                                <h3 class="project-title">RockPaperScissors Game</h3>
+                                <p class="project-desc">
+                                    A Python game built to practice basic logic, user input handling, randomized state evaluation, and game flow implementation.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">Python</span>
+                                    <span class="tag-pill">Game Logic</span>
+                                    <span class="tag-pill">CLI</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View RockPaperScissors on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="project-card" id="proj-clock">
+                                <div class="project-card-top">
+                                    <span class="project-type-tag">HTML & CSS</span>
+                                    <span class="project-year"><ion-icon name="time-outline"></ion-icon> 2022</span>
+                                </div>
+                                <h3 class="project-title">Analog_Clock</h3>
+                                <p class="project-desc">
+                                    A basic HTML and CSS project that visually simulates an analog clock interface with real-time hand movements and fluid animations.
+                                </p>
+                                <div class="project-tags">
+                                    <span class="tag-pill">HTML5</span>
+                                    <span class="tag-pill">CSS3</span>
+                                    <span class="tag-pill">JavaScript</span>
+                                </div>
+                                <div class="project-footer">
+                                    <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="project-link" aria-label="View Analog_Clock on GitHub">
+                                        <span>View Code</span>
+                                        <ion-icon name="open-outline"></ion-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </article>
     </main>
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand" id="footer-brand">
+                    <h2 class="footer-logo logo" id="footer-logo">
+                        <a href="#top">Beexoul<span>.</span></a>
+                    </h2>
+                    <p class="footer-desc">
+                        Passionate about building intuitive digital systems, cloud architecture on AWS, and solving technical challenges. Always eager to connect, collaborate, and explore new opportunities.
+                    </p>
+                    <div class="footer-meta-pills">
+                        <div class="footer-status-pill">
+                            <span class="status-indicator"></span>
+                            <span>Available for opportunities</span>
+                        </div>
+                        <div class="footer-location-pill">
+                            <ion-icon name="location-outline"></ion-icon>
+                            <span>Kathmandu &amp; Butwal, Nepal</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-contact" id="footer-contact">
+                    <h3 class="footer-heading">Get In Touch</h3>
+                    <p class="footer-contact-text">
+                        Have an idea, project, or question? Send an email or connect through my social channels.
+                    </p>
+                    <div class="footer-email-box">
+                        <a href="mailto:notbeexoul@gmail.com" class="footer-email" id="footer-email-link">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span>notbeexoul@gmail.com</span>
+                        </a>
+                        <button type="button" class="footer-copy-btn" id="footer-copy-btn" data-email="notbeexoul@gmail.com" aria-label="Copy email address" title="Copy email address">
+                            <ion-icon name="copy-outline" id="footer-copy-icon"></ion-icon>
+                            <span class="footer-copy-tooltip" id="footer-copy-tooltip">Copy</span>
+                        </button>
+                    </div>
+
+                    <div class="footer-socials" id="footer-socials">
+                        <span class="footer-social-label">Connect with me:</span>
+                        <ul class="footer-social-list">
+                            <li>
+                                <a href="https://github.com/Beexoul" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub" title="GitHub">
+                                    <ion-icon name="logo-github"></ion-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/notbeexoul" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="LinkedIn" title="LinkedIn">
+                                    <ion-icon name="logo-linkedin"></ion-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/shivarajpaudel_" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter" title="Twitter">
+                                    <ion-icon name="logo-twitter"></ion-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/@itsbeexoul" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="YouTube" title="YouTube">
+                                    <ion-icon name="logo-youtube"></ion-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/notbeexoul/" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Instagram" title="Instagram">
+                                    <ion-icon name="logo-instagram"></ion-icon>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/common.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <script rel="preload" type=module crossorigin="anonymous" as="script"
+        src=https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js></script>
+    <script rel="preload" type=module crossorigin="anonymous" as="script" nomodule
+        src=https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js></script>
 </body>
 
 </html>

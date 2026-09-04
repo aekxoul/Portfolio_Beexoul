@@ -18,8 +18,42 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 20px;
-    position: relative
+    padding: 100px 20px 40px;
+    position: relative;
+}
+
+/* Light theme adaptations for 404 illustrations */
+body.light_theme .star {
+    background: var(--raw-seinna);
+    opacity: 0.5;
+}
+
+body.light_theme .planet {
+    opacity: 0.25;
+}
+
+body.light_theme .astronaut-body {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+}
+
+body.light_theme .astronaut-helmet {
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+}
+
+body.light_theme .astronaut-visor {
+    background: hsla(24, 74%, 58%, 0.15);
+    border: 1px solid var(--raw-seinna);
+}
+
+body.light_theme .astronaut-backpack {
+    background: var(--border-color);
+}
+
+body.light_theme .astronaut-arm,
+body.light_theme .astronaut-leg {
+    background: var(--border-color);
 }
 
 .error-content {
@@ -234,32 +268,7 @@ body {
     background: linear-gradient(45deg, #a8edea, #fed6e3);
     bottom: 30%;
     left: 10%;
-    animation: orbit 25s linear infinite
-}
-
-.theme-toggle {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    border: 2px solid var(--color-primary);
-    border-radius: 50%;
-    background: #fff0;
-    color: var(--color-primary);
-    cursor: pointer;
-    transition: all var(--transition-1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    z-index: 1000
-}
-
-.theme-toggle:hover {
-    background: var(--color-primary);
-    color: var(--bg-primary);
-    transform: rotate(180deg)
+    animation: orbit 25s linear infinite;
 }
 
 @keyframes glow {
@@ -310,19 +319,11 @@ body {
 
 @media (max-width:768px) {
     .astronaut {
-        display: none
+        display: none;
     }
 
     .error-content {
-        padding: 0 20px
-    }
-
-    .theme-toggle {
-        top: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        font-size: 20px
+        padding: 0 20px;
     }
 }
 

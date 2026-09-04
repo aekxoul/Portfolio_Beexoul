@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Loading Post… | Beexoul</title>
+    <meta name="theme-color" content="#242833" />
+    <link rel="manifest" href="../../../manifest.webmanifest" />
     <link
       rel="icon"
       href="../../../assets/images/favicon.png"
@@ -20,7 +22,7 @@
     />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -31,7 +33,7 @@
           <a href="../../../index.html">Beexoul<span>.</span></a>
         </h1>
         <div class="navbar-actions">
-          <select name="language" id="lang">
+          <select name="language" id="lang" aria-label="Language selection">
             <option value="en">En</option></select
           ><button
             class="theme-btn"
@@ -53,18 +55,13 @@
         </button>
         <nav class="navbar" data-navbar>
           <ul class="navbar-list">
-            <li><a href="../../../index.html" class="navbar-link">Home</a></li>
-            <li>
-              <a href="../../../index.html#about" class="navbar-link">About</a>
-            </li>
-            <li>
-              <a href="../../../index.html#skills" class="navbar-link"
-                >Skills</a
-              >
-            </li>
-            <li>
-              <a href="../../../blog/blog.html" class="navbar-link">Blog</a>
-            </li>
+            <li><a href="../../../index.html#home" class="navbar-link">Home</a></li>
+            <li><a href="../../../index.html#about" class="navbar-link">About</a></li>
+            <li><a href="../../../index.html#skills" class="navbar-link">Skills</a></li>
+            <li><a href="../../../index.html#experience" class="navbar-link">Experience</a></li>
+            <li><a href="../../../index.html#education" class="navbar-link">Education</a></li>
+            <li><a href="../../../index.html#projects" class="navbar-link">Projects</a></li>
+            <li><a href="../../../blog/blog.html" class="navbar-link active">Blog</a></li>
           </ul>
         </nav>
       </div>
@@ -129,6 +126,7 @@
     >
       ↑
     </button>
+    <script src="../../../assets/js/common.js"></script>
     <script src="./post-js.js"></script>
   </body>
 </html>
