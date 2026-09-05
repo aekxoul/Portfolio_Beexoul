@@ -1,16 +1,16 @@
 "use strict";
 
 /**
- * Single Generic Blog Post Loader (post.html):
+ * Universal Dynamic Blog Post Loader:
  * - Loads posts from /blog/assets/post/posts.json
  * - Supports:
  *     /post.html?post=React_app_001
  *     /post.html?slug=React_app_001
  *     /post.html?id=001
  *     /post.html#React_app_001
- *     /React_app_001 (when run on Express server)
- * - Renders any number of paragraphs (paragraph-1 to paragraph-20...),
- *   headings (h1-h4), 2 images (top_image + inline image), code, quotes, and tags.
+ *     /React_app_001
+ * - Bulletproof rendering for paragraphs, headings, code, and images
+ * - Unsplash / CDN cross-origin referrer protection
  */
 
 const loadingEl = document.getElementById("post-loading");
@@ -35,13 +35,13 @@ function getRequestedSlugOrId() {
     if (params.get("id")) return params.get("id").trim();
     if (params.get("article")) return params.get("article").trim();
 
-    // Support hash: e.g. post.html#React_app_001
+    // Support hash: e.g. post.html#Mastering_CSS_002
     if (window.location.hash) {
         const hash = window.location.hash.replace(/^#/, "").trim();
         if (hash) return decodeURIComponent(hash);
     }
 
-    // Support clean pathname: e.g. /React_app_001
+    // Support clean pathname: e.g. /Mastering_CSS_002
     const parts = window.location.pathname.split("/").filter(Boolean);
     if (parts.length > 0) {
         const last = parts[parts.length - 1];
@@ -53,13 +53,13 @@ function getRequestedSlugOrId() {
 }
 
 function findPost(posts, query) {
+    if (!posts || !Array.isArray(posts) || posts.length === 0) return null;
     if (!query) {
-        // If no query is specified, preview the latest post
-        return posts && posts.length > 0 ? posts[0] : null;
+        return posts[0];
     }
     const qLower = query.toLowerCase();
 
-    // 1. Direct ID match
+    // 1. Direct ID match (e.g. "002" or 2)
     let found = posts.find((p) => String(p.id).toLowerCase() === qLower);
     if (found) return found;
 
@@ -71,7 +71,7 @@ function findPost(posts, query) {
     found = posts.find((p) => generateSlug(p.title, p.id).toLowerCase() === qLower);
     if (found) return found;
 
-    // 4. Trailing ID match (e.g. React_app_001 -> 001)
+    // 4. Trailing ID match (e.g. Mastering_CSS_002 -> 002)
     const matchId = query.match(/_([0-9a-zA-Z]+)$/);
     if (matchId) {
         found = posts.find((p) => String(p.id).toLowerCase() === matchId[1].toLowerCase());
@@ -94,21 +94,22 @@ async function fetchPostsData() {
 
     for (const url of urls) {
         try {
-            const res = await fetch(url);
+            // Append cache buster to fetch fresh data
+            const res = await fetch(`${url}?t=${Date.now()}`);
             if (res.ok) {
                 return await res.json();
             }
         } catch {
-            // try next candidate url
+            // try next candidate path
         }
     }
-    throw new Error("Could not fetch posts.json from any known path");
+    throw new Error("Could not load posts.json from any known path");
 }
 
 async function loadPost() {
     const queryIdentifier = getRequestedSlugOrId();
 
-    // 1. Check local cache
+    // 1. Check local storage cache for instant rendering
     const cachedPosts = window.AppCore ? window.AppCore.getPostsFromStorage() : null;
     if (cachedPosts && Array.isArray(cachedPosts) && cachedPosts.length > 0) {
         const post = findPost(cachedPosts, queryIdentifier);
@@ -136,7 +137,7 @@ async function loadPost() {
         const others = posts.filter((p) => p.id !== post.id).slice(0, 3);
         renderPost(post, others);
     } catch (err) {
-        console.warn("Could not fetch fresh post, checking offline view:", err);
+        console.warn("Could not fetch fresh post:", err);
         if (wrapperEl && wrapperEl.classList.contains("hidden")) {
             showError();
         }
@@ -149,7 +150,7 @@ function showError() {
 }
 
 function renderPost(post, others) {
-    const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => s;
+    const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => (s == null ? "" : String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"));
     const sanitize = window.AppCore ? window.AppCore.sanitizeUrl : (u) => u;
 
     document.title = `${post.title || "Post"} | AeKxoul Blog`;
@@ -180,11 +181,17 @@ function renderPost(post, others) {
     if (authorNameEl) authorNameEl.textContent = author;
     if (authorAvatarEl) authorAvatarEl.textContent = author.charAt(0).toUpperCase();
 
-    // 1st image: Top cover image
+    // 1st image: Top cover image with referrer and error guards
     const topImage = post.top_image || post.thumbnail || post.cover_image || post.image;
     if (coverEl && topImage) {
         coverEl.src = sanitize(topImage);
         coverEl.alt = escape(post.title || "Blog post cover");
+        coverEl.setAttribute("referrerpolicy", "no-referrer");
+        coverEl.onerror = function () {
+            if (this.parentElement) {
+                this.parentElement.style.display = "none";
+            }
+        };
         coverEl.parentElement.style.display = "";
     } else if (coverEl && !topImage) {
         coverEl.parentElement.style.display = "none";
@@ -193,7 +200,7 @@ function renderPost(post, others) {
     // Build content blocks
     let contentBlocks = Array.isArray(post.content) ? [...post.content] : [];
 
-    // Optional root second_image
+    // Optional second_image fallback
     const secondImage = post.second_image || post.second_img || post.middle_image;
     const hasInlineImageBlock = contentBlocks.some((b) => {
         const t = String(b.type || "").toLowerCase();
@@ -235,7 +242,7 @@ function renderPost(post, others) {
                     return `
                 <a href="/post.html?post=${encodeURIComponent(cardSlug)}" class="more-post-card">
                     <div class="thumb">
-                        <img src="${sanitize(cardImg)}" alt="${escape(p.title)}" loading="lazy">
+                        <img src="${sanitize(cardImg)}" alt="${escape(p.title)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none'">
                     </div>
                     <div class="info">
                         <p class="cat">${escape(p.category || "")}</p>
@@ -258,7 +265,7 @@ function renderPost(post, others) {
 
 function renderBlock(block) {
     if (!block) return "";
-    const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => s;
+    const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => (s == null ? "" : String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"));
     const sanitize = window.AppCore ? window.AppCore.sanitizeUrl : (u) => u;
 
     if (typeof block === "string") {
@@ -266,14 +273,24 @@ function renderBlock(block) {
     }
 
     const type = String(block.type || "").toLowerCase().trim();
-    const text = block.text || block.content || block.body || "";
+    const text = block.text || block.content || block.body || block.desc || "";
 
-    // Paragraphs: paragraph, paragraph-1 to paragraph-20, p, p-1, etc.
-    if (/^paragraph(-\d+)?$/.test(type) || /^p(-\d+)?$/.test(type)) {
-        return `<p>${escape(text)}</p>`;
+    // Code blocks
+    if (type === "code" || block.code !== undefined) {
+        const codeText = block.code !== undefined ? block.code : text;
+        const lang = block.language || block.lang || "code";
+        return `
+            <div class="code-block">
+                <div class="code-header">
+                    <span class="code-lang">${escape(lang)}</span>
+                    <button class="copy-btn" data-code="${encodeURIComponent(codeText)}">Copy</button>
+                </div>
+                <pre><code>${escape(codeText)}</code></pre>
+            </div>
+        `;
     }
 
-    // Headings: h1, h2, h3, h4, h5, h6
+    // Headings: h1..h6, heading, heading-1..6
     if (type === "h1" || type === "heading-1" || type === "heading1") {
         return `<h1>${escape(text)}</h1>`;
     }
@@ -294,30 +311,16 @@ function renderBlock(block) {
     }
 
     // Inline images
-    if (/^image(-\d+)?$/.test(type) || /^img(-\d+)?$/.test(type) || type === "photo") {
+    if (/^image(-\d+)?$/.test(type) || /^img(-\d+)?$/.test(type) || type === "photo" || block.src) {
         const src = sanitize(block.src || block.url || block.image || "");
+        if (!src) return "";
         const alt = escape(block.alt || block.caption || "Blog image");
         const caption = block.caption ? `<figcaption>${escape(block.caption)}</figcaption>` : "";
         return `
             <figure class="post-inline-image">
-                <img src="${src}" alt="${alt}" loading="lazy">
+                <img src="${src}" alt="${alt}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.style.display='none'">
                 ${caption}
             </figure>
-        `;
-    }
-
-    // Code blocks
-    if (type === "code") {
-        const codeText = block.code || block.text || "";
-        const lang = block.language || block.lang || "code";
-        return `
-            <div class="code-block">
-                <div class="code-header">
-                    <span class="code-lang">${escape(lang)}</span>
-                    <button class="copy-btn" data-code="${encodeURIComponent(codeText)}">Copy</button>
-                </div>
-                <pre><code>${escape(codeText)}</code></pre>
-            </div>
         `;
     }
 
@@ -327,7 +330,7 @@ function renderBlock(block) {
     }
 
     // Lists
-    if (type === "list" || type === "bullets") {
+    if (type === "list" || type === "bullets" || Array.isArray(block.items)) {
         const items = Array.isArray(block.items) ? block.items : [];
         return `
             <ul>
@@ -336,10 +339,11 @@ function renderBlock(block) {
         `;
     }
 
-    // Fallback if text exists
+    // Paragraphs: paragraph, paragraph-1..99, p, or any block with text
     if (text) {
         return `<p>${escape(text)}</p>`;
     }
+
     return "";
 }
 
@@ -368,6 +372,6 @@ function attachCopyHandlers() {
 // Initial load
 loadPost();
 
-// Listen for popstate or hashchange if user navigates back/forward
+// Listen for popstate or hashchange
 window.addEventListener("popstate", loadPost);
 window.addEventListener("hashchange", loadPost);
