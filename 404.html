@@ -16,6 +16,14 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;700&family=Saira+Stencil+One&display=swap"
       rel="stylesheet"
     />
+    <script>
+      (function () {
+        var path = window.location.pathname.replace(/^\/+/, '').replace(/\/+$/, '');
+        if (path && /^[A-Za-z0-9_-]+_\d+$/i.test(path)) {
+          window.location.replace('/post.html?post=' + encodeURIComponent(path));
+        }
+      })();
+    </script>
   </head>
   <body class="dark_theme">
     <header class="header" data-header>

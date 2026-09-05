@@ -1,0 +1,8 @@
+{
+  "name": "AeKxoul Portfolio",
+  "description": "Portfolio of Shiva Raj Paudel (AeKxoul) featuring skills, projects, and personal blog",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

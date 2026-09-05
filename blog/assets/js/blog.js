@@ -133,6 +133,22 @@ function applyFilters() {
     }
 }
 
+function generateSlug(title, id) {
+    const idStr = String(id || "").padStart(3, "0");
+    const cleanTitle = (title || "post")
+        .replace(/[^a-zA-Z0-9\s]/g, "")
+        .trim()
+        .split(/\s+/)
+        .slice(0, 3)
+        .join("_");
+    return `${cleanTitle}_${idStr}`;
+}
+
+function getPostUrl(post) {
+    const slug = post.slug || generateSlug(post.title, post.id);
+    return `/post.html?post=${encodeURIComponent(slug)}`;
+}
+
 function renderFeatured(post) {
     if (!post) return;
     const el = document.getElementById("featured-card");
@@ -140,11 +156,12 @@ function renderFeatured(post) {
 
     const escape = window.AppCore ? window.AppCore.escapeHtml : (s) => s;
     const sanitize = window.AppCore ? window.AppCore.sanitizeUrl : (u) => u;
+    const topImg = post.top_image || post.thumbnail || post.cover_image || post.image || "";
 
-    el.href = `./assets/post/post.html?id=${encodeURIComponent(post.id)}`;
+    el.href = getPostUrl(post);
     el.innerHTML = `
         <div class="card-img">
-            <img src="${sanitize(post.thumbnail)}" alt="${escape(post.title)}" loading="lazy">
+            <img src="${sanitize(topImg)}" alt="${escape(post.title)}" loading="lazy">
         </div>
         <div class="card-body">
             <div class="card-meta">
@@ -183,10 +200,13 @@ function renderGrid(posts) {
 
     grid.innerHTML = posts
         .map(
-            (post) => `
-        <a href="./assets/post/post.html?id=${encodeURIComponent(post.id)}" class="post-card">
+            (post) => {
+                const postUrl = getPostUrl(post);
+                const postImg = post.top_image || post.thumbnail || post.cover_image || post.image || "";
+                return `
+        <a href="${postUrl}" class="post-card">
             <div class="card-img">
-                <img src="${sanitize(post.thumbnail)}" alt="${escape(post.title)}" loading="lazy">
+                <img src="${sanitize(postImg)}" alt="${escape(post.title)}" loading="lazy">
             </div>
             <div class="card-body">
                 <div class="card-meta">
@@ -203,7 +223,8 @@ function renderGrid(posts) {
                 </div>
             </div>
         </a>
-    `
+    `;
+            }
         )
         .join("");
 }

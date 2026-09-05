@@ -1,205 +1,158 @@
 [
   {
     "id": "001",
-    "title": "Getting Started with React: A Beginner's Guide",
-    "subtitle": "Everything you need to know to build your first React app",
+    "title": "React app development",
+    "slug": "React_app_001",
+    "subtitle": "A practical guide to building fast, modular user interfaces with React and Vite",
     "author": "Shiva Raj Paudel",
     "date": "March 20, 2025",
     "category": "React",
-    "readTime": "8 min read",
-    "thumbnail": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80",
-    "excerpt": "React is one of the most popular JavaScript libraries for building user interfaces. In this guide, we'll walk through the fundamental concepts and get you up and running with your first React application.",
+    "readTime": "5 min read",
+    "top_image": "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1000&q=80",
+    "second_image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=80",
+    "second_image_caption": "Building clean and modular UI components in React",
+    "excerpt": "A beginner-friendly guide to building modern, fast, and scalable React applications from scratch.",
+    "tags": ["React", "JavaScript", "Frontend", "Web Development"],
     "content": [
       {
-        "type": "paragraph",
-        "text": "React is a JavaScript library developed by Facebook (now Meta) for building fast, interactive user interfaces. It uses a component-based architecture, which means your UI is broken into small, reusable pieces called components."
+        "type": "paragraph-1",
+        "text": "React is one of the most popular JavaScript libraries for building modern user interfaces. By using a component-based approach, it enables developers to build complex, interactive web applications using modular, reusable building blocks."
       },
       {
-        "type": "heading",
-        "text": "Why React?"
+        "type": "h2",
+        "text": "Why choose React for modern web development?"
       },
       {
-        "type": "paragraph",
-        "text": "React's virtual DOM makes updates incredibly fast. Instead of manipulating the real DOM directly, React creates a lightweight copy and only updates what has actually changed. This approach results in smoother, more performant applications."
+        "type": "paragraph-2",
+        "text": "With React's declarative syntax and virtual DOM, the browser only updates what has actually changed on screen. This results in blazing fast page updates and smooth, seamless user interactions across all devices."
       },
       {
-        "type": "heading",
-        "text": "Setting Up Your First Project"
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=80",
+        "caption": "Developing components with clean JSX syntax and reactive state."
       },
       {
-        "type": "paragraph",
-        "text": "The easiest way to get started is using Create React App or Vite. Both tools set up a complete development environment with a single command. Vite is generally preferred for new projects due to its incredible speed."
+        "type": "h3",
+        "text": "Quick Project Setup with Vite"
+      },
+      {
+        "type": "paragraph-3",
+        "text": "Getting a new project off the ground used to require heavy configuration. Today, Vite allows you to initialize a modern React and TypeScript application in just a few seconds with instant hot reloading."
       },
       {
         "type": "code",
         "language": "bash",
-        "text": "npm create vite@latest my-app --template react\ncd my-app\nnpm install\nnpm run dev"
+        "code": "npm create vite@latest my-app -- --template react-ts\ncd my-app\nnpm install\nnpm run dev"
       },
       {
-        "type": "heading",
-        "text": "Understanding Components"
+        "type": "h3",
+        "text": "Working with State and Lifecycle"
       },
       {
-        "type": "paragraph",
-        "text": "Components are the building blocks of a React application. A component is essentially a JavaScript function that returns JSX — a syntax that looks like HTML but is actually JavaScript. Here's a simple example:"
+        "type": "paragraph-4",
+        "text": "React Hooks like useState and useEffect make managing local state and side effects straightforward. You can encapsulate behavior into custom hooks that can be easily shared across your entire application."
       },
       {
-        "type": "code",
-        "language": "jsx",
-        "text": "function Greeting({ name }) {\n  return (\n    <div className=\"greeting\">\n      <h1>Hello, {name}!</h1>\n      <p>Welcome to React.</p>\n    </div>\n  );\n}\n\nexport default Greeting;"
-      },
-      {
-        "type": "heading",
-        "text": "State and Props"
-      },
-      {
-        "type": "paragraph",
-        "text": "Props are how components receive data from their parents, while state is local data managed within a component. When state changes, React re-renders only the affected components, keeping your app fast and efficient."
-      },
-      {
-        "type": "paragraph",
-        "text": "The useState hook is your primary tool for managing state in functional components. It returns a current value and a setter function that triggers a re-render when called."
-      },
-      {
-        "type": "heading",
-        "text": "Next Steps"
-      },
-      {
-        "type": "paragraph",
-        "text": "Once you're comfortable with components, state, and props, explore React Router for navigation and consider state management solutions like Zustand or Redux Toolkit for larger apps. The React ecosystem is vast and exciting — enjoy the journey!"
+        "type": "paragraph-5",
+        "text": "As your project grows, combining modular components, clean state management, and responsive layouts will ensure your codebase remains maintainable for years to come."
       }
-    ],
-    "tags": [
-      "React",
-      "JavaScript",
-      "Frontend",
-      "Web Development"
     ]
   },
   {
     "id": "002",
-    "title": "Mastering CSS Grid: Build Complex Layouts with Ease",
-    "subtitle": "A deep dive into CSS Grid and how it transforms layout design",
+    "title": "Mastering CSS Grid Layouts",
+    "slug": "Mastering_CSS_002",
+    "subtitle": "Build responsive magazine-style layouts without writing dozens of media queries",
     "author": "Shiva Raj Paudel",
     "date": "March 10, 2025",
     "category": "CSS",
     "readTime": "6 min read",
-    "thumbnail": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800&q=80",
-    "excerpt": "CSS Grid is the most powerful layout system available in CSS. Unlike Flexbox which is one-dimensional, Grid lets you control both rows and columns simultaneously — perfect for complex, magazine-style layouts.",
+    "top_image": "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=1000&q=80",
+    "second_image": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&q=80",
+    "second_image_caption": "CSS Grid layout tracks and alignment systems",
+    "excerpt": "CSS Grid is the ultimate 2-dimensional layout system. Learn how to craft responsive layouts effortlessly.",
+    "tags": ["CSS", "Grid", "Web Design", "Responsive"],
     "content": [
       {
-        "type": "paragraph",
-        "text": "CSS Grid has fundamentally changed how we approach web layouts. Before Grid, developers relied on floats, tables, and later Flexbox to create complex layouts — each with its own set of hacks and workarounds."
+        "type": "paragraph-1",
+        "text": "CSS Grid has fundamentally changed how we approach web layouts. While Flexbox is ideal for single-axis alignment, Grid gives you full control over both rows and columns simultaneously."
       },
       {
-        "type": "heading",
-        "text": "Grid vs Flexbox"
+        "type": "h2",
+        "text": "Grid Containers and Template Columns"
       },
       {
-        "type": "paragraph",
-        "text": "Flexbox excels at laying out items along a single axis — either a row or a column. Grid, on the other hand, gives you control over both axes simultaneously. Use Flexbox for components and small-scale layouts; use Grid for page-level layouts and complex arrangements."
+        "type": "paragraph-2",
+        "text": "With properties like grid-template-columns and repeat(auto-fit, minmax(280px, 1fr)), you can create layouts that automatically adapt to any screen size without writing media queries for every device."
       },
       {
-        "type": "heading",
-        "text": "Defining a Grid"
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&q=80",
+        "caption": "Precision control over grid tracks, gaps, and responsive placement."
       },
       {
-        "type": "paragraph",
-        "text": "Creating a grid is as simple as setting display: grid on a container element. From there, you define rows and columns using grid-template-columns and grid-template-rows."
+        "type": "h3",
+        "text": "A Responsive Grid in Three Lines"
       },
       {
-        "type": "code",
-        "language": "css",
-        "text": ".container {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: auto;\n  gap: 20px;\n}"
-      },
-      {
-        "type": "heading",
-        "text": "The fr Unit"
-      },
-      {
-        "type": "paragraph",
-        "text": "The fr unit represents a fraction of the available space. 1fr 1fr 1fr creates three equal columns, while 2fr 1fr creates two columns where the first is twice the width of the second. It's incredibly intuitive once you get the hang of it."
-      },
-      {
-        "type": "heading",
-        "text": "Placing Items Explicitly"
-      },
-      {
-        "type": "paragraph",
-        "text": "One of Grid's superpowers is explicit item placement. You can tell an element exactly where to sit in the grid using grid-column and grid-row properties, enabling true magazine-style layouts without any JavaScript."
+        "type": "paragraph-3",
+        "text": "Here is how you can set up a responsive bento or card grid that reflows automatically across mobile, tablet, and desktop viewports:"
       },
       {
         "type": "code",
         "language": "css",
-        "text": ".hero-item {\n  grid-column: 1 / 3; /* spans columns 1 to 3 */\n  grid-row: 1 / 2;\n}"
+        "code": ".cards-container {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));\n  gap: 24px;\n}"
+      },
+      {
+        "type": "paragraph-4",
+        "text": "Combine CSS Grid for major layout scaffolds with Flexbox inside individual cards for the cleanest, most flexible UI possible."
       }
-    ],
-    "tags": [
-      "CSS",
-      "Grid",
-      "Layout",
-      "Frontend"
     ]
   },
   {
     "id": "003",
-    "title": "TypeScript for JavaScript Developers",
-    "subtitle": "Why adding types to your JavaScript makes your code bulletproof",
+    "title": "Full Stack Development with Node",
+    "slug": "Full_Stack_003",
+    "subtitle": "Architecting clean, reliable backend APIs and static servers with Express",
     "author": "Shiva Raj Paudel",
     "date": "February 28, 2025",
-    "category": "TypeScript",
+    "category": "Backend",
     "readTime": "7 min read",
-    "thumbnail": "https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80",
-    "excerpt": "TypeScript is a strongly typed superset of JavaScript that compiles to plain JavaScript. It adds optional static typing, classes, and interfaces, catching errors at compile time rather than runtime.",
+    "top_image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&q=80",
+    "second_image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&q=80",
+    "second_image_caption": "Handling custom slug routing and serving static assets in Express",
+    "excerpt": "Learn how to build lightweight, fast, and scalable backend services with Express and Node.js.",
+    "tags": ["NodeJS", "Express", "Backend", "FullStack"],
     "content": [
       {
-        "type": "paragraph",
-        "text": "If you've ever spent hours debugging a runtime error only to find it was a simple type mismatch, TypeScript is for you. It brings the safety of static typing to the flexible world of JavaScript."
+        "type": "paragraph-1",
+        "text": "Building full-stack web applications requires a dependable server that can serve static assets, handle dynamic routes, and protect client privacy. Express remains the gold standard for simplicity and speed in the Node.js ecosystem."
       },
       {
-        "type": "heading",
-        "text": "The Core Benefits"
+        "type": "h2",
+        "text": "Structuring Server Middleware and Routes"
       },
       {
-        "type": "paragraph",
-        "text": "TypeScript catches errors before your code runs. Your editor understands your code better, providing intelligent autocomplete and inline documentation. Refactoring becomes safer because the compiler tells you everywhere something breaks."
+        "type": "paragraph-2",
+        "text": "Express makes it simple to handle custom URL slugs, security headers, and static file delivery. By layering lightweight middleware, you maintain full control over every HTTP request and response cycle."
       },
       {
-        "type": "heading",
-        "text": "Basic Types"
+        "type": "image",
+        "src": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1000&q=80",
+        "caption": "Handling dynamic routes and serving high-performance web pages."
       },
       {
-        "type": "code",
-        "language": "typescript",
-        "text": "let name: string = 'Shiva';\nlet age: number = 25;\nlet isDeveloper: boolean = true;\nlet skills: string[] = ['React', 'TypeScript', 'CSS'];"
+        "type": "h3",
+        "text": "Handling Custom Slugs"
       },
       {
-        "type": "heading",
-        "text": "Interfaces and Types"
+        "type": "paragraph-3",
+        "text": "By writing clean parameter-based routes, you can map user-friendly URLs like /React_app_001 directly to your blog reader template without needing complex database queries."
       },
       {
-        "type": "paragraph",
-        "text": "Interfaces let you define the shape of objects. This is where TypeScript really shines — you can describe exactly what data your functions expect and return, making your APIs self-documenting."
-      },
-      {
-        "type": "code",
-        "language": "typescript",
-        "text": "interface BlogPost {\n  id: string;\n  title: string;\n  author: string;\n  date: string;\n  tags: string[];\n}\n\nfunction renderPost(post: BlogPost): string {\n  return `<h1>${post.title}</h1>`;\n}"
-      },
-      {
-        "type": "heading",
-        "text": "Getting Started"
-      },
-      {
-        "type": "paragraph",
-        "text": "Adding TypeScript to an existing project is straightforward. Install it, generate a tsconfig.json, and start renaming files from .js to .ts. You don't have to type everything at once — TypeScript's gradual adoption path is one of its greatest strengths."
+        "type": "paragraph-4",
+        "text": "This simplicity gives you the freedom to write blog posts in clean JSON files, commit them to your repository, and publish updates immediately."
       }
-    ],
-    "tags": [
-      "TypeScript",
-      "JavaScript",
-      "Programming",
-      "Web Development"
     ]
   }
 ]

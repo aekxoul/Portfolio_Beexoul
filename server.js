@@ -28,8 +28,23 @@ app.get('/blog/', (req, res) => {
   res.sendFile(path.join(__dirname, 'blog', 'blog.html'));
 });
 
+// Generic post loader route
+app.get('/post', (req, res) => {
+  res.sendFile(path.join(__dirname, 'post.html'));
+});
+
+app.get('/post.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'post.html'));
+});
+
 app.get('/blog/post', (req, res) => {
-  res.sendFile(path.join(__dirname, 'blog', 'assets', 'post', 'post.html'));
+  res.sendFile(path.join(__dirname, 'post.html'));
+});
+
+app.get('/blog/:slug', (req, res, next) => {
+  const slug = req.params.slug;
+  if (slug.includes('.')) return next();
+  res.sendFile(path.join(__dirname, 'post.html'));
 });
 
 // Serve static files from root directory with max-age caching
@@ -40,6 +55,15 @@ app.use(express.static(__dirname, {
     }
   }
 }));
+
+// Fallback route for blog post slugs like /React_app_001
+app.get('/:slug', (req, res, next) => {
+  const slug = req.params.slug;
+  if (slug.includes('.') || ['blog', 'assets', 'api'].includes(slug)) {
+    return next();
+  }
+  res.sendFile(path.join(__dirname, 'post.html'));
+});
 
 // Custom 404 handler
 app.use((req, res) => {
